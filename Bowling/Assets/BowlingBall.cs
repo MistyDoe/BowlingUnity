@@ -9,13 +9,24 @@ public class BowlingBall : MonoBehaviour
 	public Rigidbody rig;
 
 
-	private void Start()
+	public void Bowl()
 	{
-		Bowl();
+		rig.AddForce(transform.forward * forwardForce, ForceMode.Impulse);
 	}
 
-	void Bowl()
+	public void MoveLeft()
 	{
-		rig.AddForce(transform.forward * forwardForce);
+		if (transform.position.x > leftBoarder)
+		{
+			transform.position += new Vector3(-movementIncrement, 0, 0);
+		}
 	}
+	public void MoveRight()
+	{
+		if (transform.position.x < rightBoarder)
+		{
+			transform.position += new Vector3(+movementIncrement, 0, 0);
+		}
+	}
+
 }
